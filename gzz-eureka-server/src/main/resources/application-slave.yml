@@ -1,0 +1,15 @@
+server:
+  port: 8769                    #服务端口号
+spring:
+  profiles: slave
+  application:
+    name: eurka-server         #服务名称
+eureka:
+  instance:
+    hostname: slave            #服务器主机名
+    #preferIpAddress: true
+    #instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    #instance-id: ${spring.cloud.client.ipAddress}:${spring.application.name}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://master:8761/eureka/

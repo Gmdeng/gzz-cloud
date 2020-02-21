@@ -1,0 +1,17 @@
+server:
+  port: 8761                    #服务端口号
+spring:
+  profiles: master
+  application:
+    name: eurka-server         #服务名称
+eureka:
+  instance:
+    hostname: master           #服务器主机名
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://slave:8769/eureka/
+  server:
+    #      enable-self-preservation: true  #启动保护机制
+    enable-self-preservation: false           # 关闭自我保护模式（缺省为打开）
+    eviction-interval-timer-in-ms: 5000       # 续期时间，即扫描失效服务的间隔时间（缺

@@ -1,0 +1,30 @@
+server:
+  port: 8761                   #服务端口号
+spring:
+  application:
+    name: eurka-server         #服务名称
+  output:
+    ansi:
+      enabled: ALWAYS  #NEVER: 禁用, DETECT会检查终端是否支持ANSI，是的话就采用彩色输出（推荐项）, ALWAYS：总是使用
+eureka:
+  instance:
+    hostname: localhost        #服务器主机名
+    #metadata-map:
+    #   user.name: anxminise
+    #   user.password: 123456
+    #easeRenewalIntervalInSeconds: 10
+    #health-check-url-path: /actuator/health
+    #ip-address: 127.0.0.1
+    #prefer-ip-address: true
+
+  server:
+    enable-self-preservation: false # 关闭红色提示
+  client:
+    #注册中心不需要注册自己,这两处默认值都为true，我们设为false
+    registerWithEureka: false  #是否注册到server 本身是server 所以false
+    #注册中心不需要去发现服务
+    fetchRegistry: false       #是否从eureka服务器获取注册信息
+    #设置服务注册中心的URL，此处则表示为http://localhost:8901/eureka/${eureka.instance.hostname}
+    serviceUrl:
+      defaultZone: http://localhost:${server.port}/eureka/
+

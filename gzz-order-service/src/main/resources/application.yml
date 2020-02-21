@@ -1,0 +1,22 @@
+server:
+  port: 10011  #8763
+spring:
+  application:
+    name: order-service
+  output:
+    ansi:
+      enabled: ALWAYS  #NEVER: 禁用, DETECT会检查终端是否支持ANSI，是的话就采用彩色输出（推荐项）, ALWAYS：总是使用
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 10  # 发呆时间，即服务续约到期时间（缺省为90s）
+  client:
+    #healthcheck:
+    #  enabled: true                           # 开启健康检查（依赖spring-boot-starter-actuator）
+    #向注册中心注册自己，此处默认为true，可以不用加的
+    registerWithEureka: true
+    #让注册中心发现自己，默认也为true，可以不用加的
+    fetchRegistry: true
+    #设置服务注册中心的URL，注册中心已经设置过了，直接去注册中心查看即可
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/   #eureka服务器地址
