@@ -15,6 +15,7 @@
 	<name>gzz-cloud</name>
 	<description>Spring-cloud project for Spring Boot</description>
 	<modules>
+		<module>gzz-config-server</module>
 		<module>gzz-eureka-server</module>
 		<module>gzz-member-service</module>
 		<module>gzz-product-service</module>

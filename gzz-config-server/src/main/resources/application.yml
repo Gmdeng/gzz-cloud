@@ -1,0 +1,18 @@
+server:
+  port: 8888                    #服务端口号
+spring:
+  application:
+    name: config-server        #服务名称
+  output:
+    ansi:
+      enabled: ALWAYS  #NEVER: 禁用, DETECT会检查终端是否支持ANSI，是的话就采用彩色输出（推荐项）, ALWAYS：总是使用
+  cloud:
+    config:
+      profile: dev
+      label: master
+      server:
+        git:
+          uri: https://github.com/Gmdeng/Gzz # https://github.com/forezp/SpringcloudConfig/
+          searchPaths:
+          username: gmdeng
+          password: pwd709394

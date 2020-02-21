@@ -18,7 +18,7 @@ eureka:
     #prefer-ip-address: true  #以IP地址注册到服务中心，相互注册使用IP地址
 
   server:
-    enable-self-preservation: false # 关闭红色提示
+    enable-self-preservation: false # 关闭红色提示的自我保护，生产不建议关闭
   client:
     #注册中心不需要注册自己,这两处默认值都为true，我们设为false
     registerWithEureka: false  #是否注册到server 本身是server 所以false
