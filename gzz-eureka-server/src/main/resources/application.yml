@@ -15,7 +15,7 @@ eureka:
     #easeRenewalIntervalInSeconds: 10
     #health-check-url-path: /actuator/health
     #ip-address: 127.0.0.1
-    #prefer-ip-address: true
+    #prefer-ip-address: true  #以IP地址注册到服务中心，相互注册使用IP地址
 
   server:
     enable-self-preservation: false # 关闭红色提示

@@ -16,9 +16,15 @@ public class OrderService implements IOrderService {
 
     @Override
     public Object makeOrder(Order o) {
-        Object obj = restTemplate.getForObject("http://member-service/api/v1/member/getInfo/" + UUID.randomUUID().toString(), Object.class);
+        Object obj = restTemplate.getForObject("http://member-service/api/v1/member/getInfo/" + UUID.randomUUID().toString().replaceAll("-", ""), Object.class);
 
         System.out.println(obj);
         return obj;
     }
+
+    // 熔断器
+    public Object makeOrderError(Order o) {
+        return "Hi," + o.getNo() + ",sorry,error!";
+    }
+
 }

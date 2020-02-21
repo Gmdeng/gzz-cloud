@@ -1,20 +1,20 @@
-package com.gzz.cloud.member;
+package com.gzz.cloud.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
- * 会员中心
+ * 商品中心
  *
  * @author G-m
  */
 @EnableEurekaClient
 @SpringBootApplication
-public class MemberServiceApplication {
+public class ProductServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MemberServiceApplication.class, args);
+        SpringApplication.run(ProductServiceApplication.class, args);
     }
 
 }

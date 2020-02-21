@@ -17,6 +17,7 @@
 	<modules>
 		<module>gzz-eureka-server</module>
 		<module>gzz-member-service</module>
+		<module>gzz-product-service</module>
 		<module>gzz-order-service</module>
 	</modules>
 	<properties>

@@ -1,9 +1,8 @@
 server:
   port: 12001  #8763
-  max-http-header-size: 4048576  # 解决数据量过大时报错
 spring:
   application:
-    name: member-service
+    name: product-service
   output:
     ansi:
       enabled: ALWAYS  #NEVER: 禁用, DETECT会检查终端是否支持ANSI，是的话就采用彩色输出（推荐项）, ALWAYS：总是使用

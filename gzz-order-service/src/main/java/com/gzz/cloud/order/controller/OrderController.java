@@ -1,6 +1,7 @@
 package com.gzz.cloud.order.controller;
 
 import com.gzz.cloud.order.domain.Order;
+import com.gzz.cloud.order.feignclient.IProductService;
 import com.gzz.cloud.order.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import java.util.UUID;
 public class OrderController {
     @Autowired
     private IOrderService orderService;
+    @Autowired
+    private IProductService productService;
 
     @RequestMapping("/buildOrder")
     public Object buildOrder() {
@@ -25,5 +28,10 @@ public class OrderController {
         o.setMemberNo("eeeeeeeeeeeeeeeeeee");
         Object ret = orderService.makeOrder(o);
         return ret;
+    }
+
+    @RequestMapping("/showOrder")
+    public Object showOrder(){
+        return productService.getProductInfo("952700000GM");
     }
 }
