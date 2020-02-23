@@ -20,11 +20,23 @@ eureka:
     #设置服务注册中心的URL，注册中心已经设置过了，直接去注册中心查看即可
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/   #eureka服务器地址
+#自定义负载均衡策略
+#product-service: #（要用调用的服务名）
+#  ribbon:
+#    NFLoadBalancerBuleClassName: com.netflix.loadbalancer.RandomRule #随机策略
 
-#开启熔断
+##
 feign:
+  #开启熔断
   hystrix:
     enabled: true
+#  #修改调用超时间（）
+  client:
+    config:
+      default:
+        connectTimeout: 2000
+        readTimeout: 2000
+        loggerLevel: base
 #是否开启超时熔断, 如果为false, 则熔断机制只在服务不可用时开启
 hystrix:
   command:

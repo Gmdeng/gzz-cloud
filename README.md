@@ -5,7 +5,32 @@ Springboot-cloud 全家桶 学习
 ## 消费者 order-service
 ### 调用Member生产者的接口
 - RestTemplate + Ribbon 方式  调用Member生产者的接口
-- RestTemplate + Ribbon 方式  调用Member生产者的接口
+  - Ribbon是一个负载均衡
+  - 不包括熔断
+- openfeign 方式  调用Member生产者的接口
+  - 包括调用，负载均衡、容断
+  - 超时配置
+    - 默认options readtimeout是60秒，但是由于hystrix是1秒超时。
+- 选择feign的原因
+  - 默认集成了ribbon
+  - 写起来思路更加清晰和方便。
+  - 采用注解方式进行配置，配置熔断等方式方便。
+
+## 降级和熔断
+
+1. 熔断：
+   - 保险丝。熔断服务，为了防止整个系统故障，包含子和下游服务。
+   - 当调用一个接口时调用了多次都不成后就不再调用的意思。
+2. 降级：
+   - 抛弃一些非核心的接口和数据
+   - 等有条件时再去处理抛弃接口和数据
+3. 熔断和降级互相交集
+   - 相同点：
+     - 从可用性和可靠性出发，为了防止系统崩溃
+     - 最终让用户体验到的是某些功能暂时不能用
+   - 不同点：
+     - 服务熔断一般是**下游服务故障**导致的。
+     - 服务降级一般是从整体系统负荷考虑，由调用方控制选择哪些服务。
 
 
 
@@ -14,6 +39,8 @@ Springboot-cloud 全家桶 学习
 ### 隔离机制THREAD和SEMAPHORE
 
 `@HystrixCommand`有两种隔离机制,THREAD(默认,推荐)和SEMAPHORE
+
+Https://github.com/Netflix/Hystrix/wiki
 
 ### THREAD
 
@@ -76,7 +103,72 @@ semaphore应该占整个容器（tomcat）的线程池的一小部分。
 
 ~~~
 
-**SpringCloud 工具框架：**
+## ZUUL网关
+
+### 介绍
+
+- 什么是网关
+
+  - 统一接入
+
+    API Gateway，是系统的唯一对外的入口，介于客户端和服务器的中间层，处理非业务功能提供路由请求、鉴权、监控、缓存、限流等功能
+
+    - 智能路由器
+    - AB测试、灰度测试
+    - 负载均衡、容灾处理
+    - 日志埋点（类似Nignx日志）
+
+  - 流量监控
+
+    - 限流处理
+    - 服务降级
+
+  - 安全防护
+
+    - 鉴权处理
+    - 监控
+    - 机器网络隔离
+
+- 主流的网关
+
+  - Zulu：是Netflix开源的微服务网关，和Eureka\Ribbon\Hystrix等组件配合使用，Zuul2.0比1.0性能提高很多。
+  - Kong：由Mashape公司开源的，基于Nginx的API Gateway.
+  - nginx+lua：是一个高性能的HTTP和反向代理服务器，lua是脚本语言，让Nginx执行Lua脚本，并且高并发、非阻塞的处理各条请求。
+
+
+
+## Sleuth和Zipkin链路追踪
+
+### Sleuth日志埋点
+
+- 收集跟踪信息通过http请求发送给zipkin server， ZipkinServer进行行跟踪信息的存储以及提供RestApi即可，Zippin UI调用其API接口进行数据展示。
+- 默认存储是内存，也可用mysql、或者elasticsearch等存储。
+
+### Zipkin可视化系统
+
+- 什么是Zipkin
+  - 官网：https://zipkin.io/
+  - 大规模分布工系统的APM工具（Application Performance Management）,基于Google Dapper的基础实现，和Sleuth结合可以提供可视化web界面分析调用链路耗时情况。
+- 同类产品
+  - 鹰眼（EagleEye）
+  - CAT
+  - Twitter开源zipkin，结合sleuth
+  - pinpoint运用javaagent字节码增强技术
+  - StackDriver Trace (Google)
+- 开始使用
+  - Https://github.com/openzipkin/zipkin
+  - Https://zipkin.io/pages/quickstart.html
+  - Zipkin组成：Conllector、Storage、Restful API、Web UI组成
+- 知识拓展
+  - openTracing 已进入CNCF，正在为全球的分布式追踪，提供统一的概念和数据标准。通过提供平台无关、厂商无关的API，使得开发人员能够方便的添加（或更换）追踪系统的实现。
+- 推荐阅读
+  - http://blog.daocloud.io/cncf-3
+  - Https://www.zhihu.com/question/27994350
+  - Https://yq.aliyum.com/articles/514488?utm_content=m_43347
+
+
+
+SpringCloud 工具框架：**
 
 ~~~powershell
 1、Spring Cloud Config 配置中心，利用git集中管理程序的配置。 

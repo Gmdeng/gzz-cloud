@@ -15,6 +15,7 @@
 	<name>gzz-cloud</name>
 	<description>Spring-cloud project for Spring Boot</description>
 	<modules>
+		<module>gzz-api-gateway</module>
 		<module>gzz-config-server</module>
 		<module>gzz-eureka-server</module>
 		<module>gzz-member-service</module>
@@ -28,6 +29,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>28.2-jre</version>
+		</dependency>
 		<!--开发阶段使用：springboot热启动(热部署)：项目有更改，自动编译：需配置idea   true生效-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -72,4 +78,19 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<!-- 阿里云仓库 -->
+	<repositories>
+		<repository>
+			<id>nexus-aliyun</id>
+			<name>Nexus aliyun</name>
+			<layout>default</layout>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
 </project>

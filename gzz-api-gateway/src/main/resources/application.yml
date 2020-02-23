@@ -1,0 +1,26 @@
+server:
+  port: 9000  #8763
+spring:
+  application:
+    name: api-gateway
+  output:
+    ansi:
+      enabled: ALWAYS  #NEVER: 禁用, DETECT会检查终端是否支持ANSI，是的话就采用彩色输出（推荐项）, ALWAYS：总是使用
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 10  # 发呆时间，即服务续约到期时间（缺省为90s）
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/   #eureka服务器地址
+
+#自定义路由映射
+zuul:
+  routes:
+    member-service: /gatwa/member/**   #将member-service 映射为apigateway
+    product-service: /gatway/product/**
+  ignored-patterns: /*-service/**  # 忽略以service的方式访问
+  # 忽略整个服务对外提供服务
+  #ignored-services: product-service #
+  # 处理HTTP请求头为空的问题，将以下值设为空。
+  sensitive-headers:

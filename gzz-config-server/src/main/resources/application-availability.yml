@@ -1,6 +1,8 @@
 server:
   port: 20000                    #服务端口号
 spring:
+  profiles: availability
+  #      include: testDb,testFtp,testRedis
   application:
     name: config-server        #服务名称
   cloud:
@@ -12,4 +14,10 @@ spring:
           uri: https://github.com/Gmdeng/Gzz # 配置git仓库地址
           search-paths:      #配置仓库路径
           username: gmdeng  #访问git仓库的用户名
-          password: pwd709394  #访问git仓库的用户名
+          password: pwd574737  #访问git仓库的用户名
+# 高可用的分布式配置中心，需要注册到注册中心去
+eureka:
+  client:
+    #设置服务注册中心的URL，注册中心已经设置过了，直接去注册中心查看即可
+    service-url:
+      default-zone: http://localhost:8761/eureka/   #eureka服务器地址
