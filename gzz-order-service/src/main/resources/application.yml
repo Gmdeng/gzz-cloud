@@ -6,6 +6,13 @@ spring:
   output:
     ansi:
       enabled: ALWAYS  #NEVER: 禁用, DETECT会检查终端是否支持ANSI，是的话就采用彩色输出（推荐项）, ALWAYS：总是使用
+  # zipkin地址
+  zipkin:
+    base-url: http://localhost:9411/
+  # 采样配置百分比，开发时设置为1表示全部的。生产就采用默认。
+  sleuth:
+    sampler:
+      probability: 1
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）

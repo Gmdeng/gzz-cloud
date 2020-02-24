@@ -9,7 +9,7 @@ spring:
       label: master          #配置仓库的分支
       server:
         git:
-          uri: https://github.com/Gmdeng/Gzz # 配置git仓库地址
-          search-paths:      #配置仓库路径
+          uri: https://gitee.com/timer-man/gm-config # 配置git仓库地址
+          #search-paths:      #配置仓库路径
           username: gmdeng  #访问git仓库的用户名
           password: pwd709394  #访问git仓库的用户名

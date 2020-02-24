@@ -12,9 +12,11 @@ spring:
       server:
         git:
           uri: https://github.com/Gmdeng/Gzz # 配置git仓库地址
-          search-paths:      #配置仓库路径
-          username: gmdeng  #访问git仓库的用户名
-          password: pwd574737  #访问git仓库的用户名
+          search-paths:            #配置仓库路径
+          username: gmdeng         #访问git仓库的用户名
+          password: pwd574737      #访问git仓库的用户名
+          timeout:  10             #超时时间，默认是5秒
+          defalut-label: master    #默认分支
 # 高可用的分布式配置中心，需要注册到注册中心去
 eureka:
   client:

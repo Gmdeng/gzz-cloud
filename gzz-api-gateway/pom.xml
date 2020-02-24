@@ -11,7 +11,7 @@
 	<artifactId>gzz-api-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gzz.api-gateway</name>
-	<description>网关</description>
+	<description>gzz.api-gateway 网关</description>
 
 	<dependencies>
 		<dependency>
