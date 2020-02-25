@@ -1,13 +1,17 @@
-#bootstrap.yml是系统级的，优先级更高，负责从外部加载配置信息
-spring:
-  cloud:
-    config
-    profile: dev   #本次访问的配置项
-    #      name: product-service #需要从github上读取的资源名称，注意没有yml后缀名
-
-    #      label: master
-    #      uri: http://localhost:10000  #本微服务启动后先去找3344号服务，
-    discovery:
-      service-id: config-server
-      enabled: true
+##bootstrap.yml 是系统级的，优先级更高，负责从外部加载配置信息
+#spring:
+#  profiles:
+#    active: prod   #本次访问的配置项
+#  application:
+#    name: product-service
+#  cloud:
+#    config:
+#      profile: dev   #本次访问的配置项(比上面的优先)
+#      name: product-service #需要从github上读取的资源名称，注意没有yml后缀名
+#      label: master
+#      uri: http://localhost:20000  #本微服务启动后先去找3344号服务，
+#    ### 通过注册中心
+#    #discovery:
+#    #  service-id: config-server
+#    #  enabled: true
 

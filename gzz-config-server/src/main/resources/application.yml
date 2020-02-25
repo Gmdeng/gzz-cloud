@@ -1,15 +1,23 @@
 server:
   port: 20000                    #服务端口号
 spring:
+  #profiles:
+  #  active: native   #读取resources资源配置文件
   application:
     name: config-server        #服务名称
+  output:
+    ansi:
+      enabled: ALWAYS  #NEVER: 禁用, DETECT会检查终端是否支持ANSI，是的话就采用彩色输出（推荐项）, ALWAYS：总是使用
   cloud:
     config:
-      #profile: dev
       label: master          #配置仓库的分支
       server:
+        # 读取GITHUB配置文件
         git:
-          uri: https://gitee.com/timer-man/gm-config # 配置git仓库地址
-          #search-paths:      #配置仓库路径
-          username: gmdeng  #访问git仓库的用户名
-          password: pwd709394  #访问git仓库的用户名
+          uri: https://gitee.com/timer-man/gm-config/  # 配置git仓库地址
+          #search-paths:      #配置git仓库地址下的相对地址 多个用逗号","分割。
+          username: timer-man  #访问git仓库的用户名
+          password: pwd123123  #访问git仓库的用户名
+        # 读取本地指定的配置文件位置
+        #native:
+        #  searchLocations: file:D:/properties/
